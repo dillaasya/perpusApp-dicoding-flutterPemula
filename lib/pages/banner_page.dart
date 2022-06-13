@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:perpus/models/book.dart';
 import 'package:perpus/pages/detail_page.dart';
-import 'package:perpus/widgets/card_banner_book.dart';
 
 class BannerPage extends StatelessWidget {
   const BannerPage({
@@ -12,7 +11,7 @@ class BannerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
       ),
       height: 260,
@@ -28,7 +27,7 @@ class BannerPage extends StatelessWidget {
                       return DetailPage(itemBook: itemBook);
                     }));
               },
-              child: Container(
+              child: SizedBox(
                 width: 125,
                 child: Card(
                   elevation: 0,
@@ -37,7 +36,7 @@ class BannerPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 190,
                         width: 125,
                         child: ClipRRect(
@@ -48,7 +47,7 @@ class BannerPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -57,12 +56,12 @@ class BannerPage extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.fade,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Text(
                         itemBook.penulis,
-                        style: GoogleFonts.poppins(fontSize: 12, color: Color(0xff939393)),
+                        style: GoogleFonts.poppins(fontSize: 12, color: const Color(0xff939393)),
                         maxLines: 1,
                         overflow: TextOverflow.fade,
                       )

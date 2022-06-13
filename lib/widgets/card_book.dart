@@ -13,15 +13,14 @@ class CardBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(5)),
-    //set border radius more than 50% of height and width to make circle
     ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
               width: 82,
               height: 112,
               child: ClipRRect(
@@ -32,7 +31,7 @@ class CardBook extends StatelessWidget {
                   fit: BoxFit.cover,
                 )
               ),),
-          SizedBox(
+          const SizedBox(
             width: 12,
           ),
           Padding(
@@ -47,11 +46,11 @@ class CardBook extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.fade,
                 ),
-                SizedBox(height: 6,),
+                const SizedBox(height: 6,),
                 Text(
                   itemBook.penulis,
                   style: GoogleFonts.poppins(
-                      fontSize: 16, color: Color(0xff939393)),
+                      fontSize: 16, color: const Color(0xff939393)),
                   maxLines: 1,
                   overflow: TextOverflow.fade,
                 ),

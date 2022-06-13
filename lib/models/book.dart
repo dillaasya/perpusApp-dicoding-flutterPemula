@@ -13,6 +13,7 @@ class Book {
       required this.genere,
       required this.sinopsis,
       required this.cover});
+
 }
 
 var bookData = [
@@ -58,3 +59,4 @@ var bookData = [
       cover: 'assets/images/Mask Group 3.png'),
 
 ];
+

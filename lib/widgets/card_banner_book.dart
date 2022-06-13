@@ -13,14 +13,14 @@ class CardBannerBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 250,
       width: 125,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             height: 190,
             width: 125,
             child: ClipRRect(
@@ -31,7 +31,7 @@ class CardBannerBook extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           Text(
@@ -40,12 +40,12 @@ class CardBannerBook extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.fade,
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Text(
             itemBook.penulis,
-            style: GoogleFonts.poppins(fontSize: 12, color: Color(0xff939393)),
+            style: GoogleFonts.poppins(fontSize: 12, color: const Color(0xff939393)),
             maxLines: 1,
             overflow: TextOverflow.fade,
           )

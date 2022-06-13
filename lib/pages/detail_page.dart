@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:perpus/provider/theme_provider.dart';
 import 'package:perpus/models/book.dart';
+import 'package:provider/provider.dart';
 
-class DetailPage extends StatefulWidget {
+class DetailPage extends StatelessWidget {
   final Book itemBook;
 
-  DetailPage({required this.itemBook});
-
-  @override
-  State<DetailPage> createState() => _DetailPageState();
-}
-
-class _DetailPageState extends State<DetailPage> {
-  bool isFavorite = false;
+  const DetailPage({Key? key, required this.itemBook}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeNotifier>(context, listen: false);
+
     return Scaffold(
       body: SafeArea(
           child: Stack(
         children: [
-          Container(
+          SizedBox(
             height: 370,
-            decoration: BoxDecoration(
-              color: Colors.black12,
-            ),
             child: Container(
               height: 340,
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 image: DecorationImage(
-                  image: AssetImage(widget.itemBook.cover),
+                  image: AssetImage(itemBook.cover),
                   fit: BoxFit.fitHeight,
                 ),
               ),
@@ -38,47 +32,51 @@ class _DetailPageState extends State<DetailPage> {
           ),
           ListView(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 330,
               ),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
+                  borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(20),
                   ),
-                  color: Colors.white,
+                  color: theme.getTheme() == theme.lightTheme
+                      ? Colors.white
+                      : const Color(0xff292929),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
-                      widget.itemBook.judul,
+                      itemBook.judul,
                       style: GoogleFonts.poppins(fontSize: 16),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      widget.itemBook.penulis,
+                      itemBook.penulis,
                       style: GoogleFonts.poppins(
-                          fontSize: 12, color: Color(0xff939393)),
+                          fontSize: 12, color: const Color(0xff939393)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 45,
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width - 80,
                       decoration: BoxDecoration(
-                          color: Color(0xffF6F0F0),
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                          color: theme.getTheme() == theme.lightTheme
+                              ? const Color(0xffF6F0F0)
+                              : const Color(0xffFBC374),
+                          borderRadius: const BorderRadius.all(Radius.circular(5))),
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -87,12 +85,12 @@ class _DetailPageState extends State<DetailPage> {
                                 Text('Genre',
                                     style: GoogleFonts.poppins(
                                         fontSize: 12,
-                                        color: Color(0xff939393))),
-                                SizedBox(
+                                        color: const Color(0xff939393))),
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
-                                  widget.itemBook.genere,
+                                  itemBook.genere,
                                   style: GoogleFonts.poppins(fontSize: 14),
                                 )
                               ],
@@ -104,12 +102,12 @@ class _DetailPageState extends State<DetailPage> {
                                 Text('Bahasa',
                                     style: GoogleFonts.poppins(
                                         fontSize: 12,
-                                        color: Color(0xff939393))),
-                                SizedBox(
+                                        color: const Color(0xff939393))),
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
-                                  widget.itemBook.bahasa,
+                                  itemBook.bahasa,
                                   style: GoogleFonts.poppins(fontSize: 14),
                                 )
                               ],
@@ -118,13 +116,13 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 20, left: 20),
                       child: Text(
-                        widget.itemBook.sinopsis,
+                        itemBook.sinopsis,
                         style: GoogleFonts.poppins(fontSize: 14),
                       ),
                     )
@@ -134,7 +132,7 @@ class _DetailPageState extends State<DetailPage> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -142,7 +140,7 @@ class _DetailPageState extends State<DetailPage> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     backgroundColor: Colors.white,
                     child: Icon(
                       Icons.arrow_back,

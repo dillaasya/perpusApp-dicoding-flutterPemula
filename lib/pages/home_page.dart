@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:perpus/pages/banner_page.dart';
 import 'package:perpus/pages/list_page.dart';
+import 'package:perpus/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,89 +10,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  static final List<Widget> _navbarOption = <Widget>[
+    const ListPage(),
+    const ProfilePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: ListView(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                            height: 60,
-                            width: 60,
-                            child: CircleAvatar(
-                              backgroundImage: AssetImage('assets/images/Logo.png'),
-                            )),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Rose Najamunas',
-                              style: GoogleFonts.poppins(fontSize: 16),
-                            ),
-                            Text(
-                              'Jakarta',
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16, color: Color(0xff939393)),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                  ],
-                ),
-              ],
-            ),
+      body: _navbarOption[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Dashboard',
           ),
-          SizedBox(
-            height: 24,
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline_rounded),
+            label: 'Preferences',
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Text(
-              'Just Added',
-              style: GoogleFonts.poppins(
-                  fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-          SizedBox(
-            height: 12,
-          ),
-          BannerPage(),
-          SizedBox(
-            height: 24,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Text(
-              'All Books',
-              style: GoogleFonts.poppins(
-                  fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-          SizedBox(
-            height: 12,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: ListPage(),
-          )
         ],
-      )),
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        //backgroundColor: Colors.white,
+        selectedItemColor: const Color(0xffFAB045),
+
+      ),
     );
   }
 }
-
