@@ -18,10 +18,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
-  return runApp(ChangeNotifierProvider<ThemeNotifier>(
-    create: (_) => ThemeNotifier(),
-    child: const MyApp(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,24 +26,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeNotifier>(
-        builder: (context, theme, child) => FutureBuilder(
-              future: Init.instance.initialize(),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return MaterialApp(
-                    home: const SplashPage(),
-                    theme: theme.getTheme(),
-                    debugShowCheckedModeBanner: false,
-                  );
-                } else {
-                  return MaterialApp(
-                    home: const WelcomePage(),
-                    theme: theme.getTheme(),
-                    debugShowCheckedModeBanner: false,
-                  );
-                }
-              },
-            ));
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeNotifier()),
+      ],
+      child: Consumer<ThemeNotifier>(
+          builder: (context, theme, child) => FutureBuilder(
+            future: Init.instance.initialize(),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return MaterialApp(
+                  home: const SplashPage(),
+                  theme: theme.getTheme(),
+                  debugShowCheckedModeBanner: false,
+                );
+              } else {
+                return MaterialApp(
+                  home: const WelcomePage(),
+                  theme: theme.getTheme(),
+                  debugShowCheckedModeBanner: false,
+                );
+              }
+            },
+          )),
+    );
   }
 }
