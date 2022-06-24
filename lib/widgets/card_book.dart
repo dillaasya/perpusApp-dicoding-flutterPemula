@@ -34,27 +34,30 @@ class CardBook extends StatelessWidget {
           const SizedBox(
             width: 12,
           ),
-          Padding(
-            padding: const EdgeInsets.only(top:12),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  itemBook.judul,
-                  style: GoogleFonts.poppins(fontSize: 16),
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                ),
-                const SizedBox(height: 6,),
-                Text(
-                  itemBook.penulis,
-                  style: GoogleFonts.poppins(
-                      fontSize: 16, color: const Color(0xff939393)),
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                ),
-              ],
+          SizedBox(
+            width: MediaQuery.of(context).size.width-150,
+            child: Padding(
+              padding: const EdgeInsets.only(top:12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      itemBook.judul,
+                      style: GoogleFonts.poppins(fontSize: 16),
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
+                    ),
+                  const SizedBox(height: 6,),
+                  Text(
+                    itemBook.penulis,
+                    style: GoogleFonts.poppins(
+                        fontSize: 16, color: const Color(0xff939393)),
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                  ),
+                ],
+              ),
             ),
           )
         ],

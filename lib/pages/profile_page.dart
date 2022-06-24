@@ -11,7 +11,7 @@ class ProfilePage extends StatelessWidget {
     final theme = Provider.of<ThemeNotifier>(context, listen: true);
     return Scaffold(
       body: SafeArea(
-          child: Center(
+          child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

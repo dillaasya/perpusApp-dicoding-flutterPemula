@@ -58,10 +58,13 @@ class DetailPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      itemBook.penulis,
-                      style: GoogleFonts.poppins(
-                          fontSize: 12, color: const Color(0xff939393)),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        itemBook.penulis,
+                        style: GoogleFonts.poppins(
+                            fontSize: 12, color: const Color(0xff939393)),
+                      ),
                     ),
                     const SizedBox(
                       height: 45,
